@@ -84,12 +84,16 @@ export function UserList({ users }: UserListProps) {
                   <AccordionItem value={`item-${user.id}`}>
                     <AccordionTrigger>View Enrollments</AccordionTrigger>
                     <AccordionContent>
-                      {user.enrollments.map((enrollment) => (
-                        <div key={enrollment.id} className="mb-2">
-                          <p>Course: {enrollment.course.name}</p>
-                          <p>Enrolled at: {enrollment.enrolled_at}</p>
-                        </div>
-                      ))}
+                      {user.enrollments.length > 0 ? (
+                        user.enrollments.map((enrollment) => (
+                          <div key={enrollment.id} className="my-3">
+                            <p className="font-semibold text-gray-900">{enrollment.course.name}</p>
+                            <p className="text-gray-500">Enrolled at: {enrollment.enrolled_at}</p>
+                          </div>
+                        ))
+                      ) : (
+                        <p className="text-gray-500 py-3">Nenhum curso matriculado</p>
+                      )}
                     </AccordionContent>
                   </AccordionItem>
                 </Accordion>
