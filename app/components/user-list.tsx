@@ -22,6 +22,7 @@ import {
   PaginationPrevious,
   PaginationNext,
 } from "@/components/ui/pagination" 
+import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 
 interface Enrollment {
   id: number;
@@ -76,7 +77,14 @@ export function UserList({ users }: UserListProps) {
         <TableBody>
           {currentUsers.map((user) => (
             <TableRow key={user.id}>
-              <TableCell>{user.name}</TableCell>
+              <TableCell>
+                <div className="flex items-center gap-2">
+                  <Avatar>
+                    <AvatarFallback>{user.name.split(" ").map((n) => n[0]).join("")}</AvatarFallback>
+                  </Avatar>
+                  {user.name}
+                </div>
+              </TableCell>
               <TableCell>{user.email}</TableCell>
               <TableCell>{user.created_at}</TableCell>
               <TableCell>
