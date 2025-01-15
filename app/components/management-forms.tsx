@@ -31,42 +31,39 @@ export function ManagementForms() {
       event.preventDefault();
       const formData = new FormData(event.currentTarget);
       const userData = Object.fromEntries(formData);
-  
+    
       try {
         const user = await createUser(userData);
-        alert('User created successfully!');
         setUsers((prev) => [...prev, user]);
-      } catch (error: any) {
-        alert('Error creating user: ' + (error.response?.data?.error || error.message));
+      } catch (error) {
+        console.error("Error creating user:", error);
       }
     };
-  
+    
     const handleCreateCourse = async (event: React.FormEvent<HTMLFormElement>) => {
       event.preventDefault();
       const formData = new FormData(event.currentTarget);
       const courseData = Object.fromEntries(formData);
-  
+    
       try {
         const course = await createCourse(courseData);
-        alert('Course created successfully!');
         setCourses((prev) => [...prev, course]);
-      } catch (error: any) {
-        alert('Error creating course: ' + (error.response?.data?.error || error.message));
+      } catch (error) {
+        console.error("Error creating course:", error);
       }
     };
-  
+    
     const handleEnrollUser = async (event: React.FormEvent<HTMLFormElement>) => {
       event.preventDefault();
       const formData = new FormData(event.currentTarget);
       const enrollmentData = Object.fromEntries(formData);
-  
+    
       try {
         await enrollUser(enrollmentData);
-        alert('User enrolled successfully!');
-      } catch (error: any) {
-        alert('Error enrolling user: ' + (error.response?.data?.error || error.message));
+      } catch (error) {
+        console.error("Error enrolling user:", error);
       }
-    };
+    };    
     
 
   return (
