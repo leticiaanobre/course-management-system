@@ -5,7 +5,9 @@ import { fetchUsers, fetchCourses } from './services/api'
 import { UserList } from './components/user-list'
 import { CourseList } from './components/course-list'
 import { Navigation } from './components/navigation'
+import { ManagementForms } from './components/management-forms'
 import { Loader2 } from 'lucide-react'
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 
 export default function Home() {
   const [users, setUsers] = useState([])
@@ -27,7 +29,7 @@ export default function Home() {
         setCourses(coursesData)
       } catch (error) {
         console.error('Error fetching data:', error)
-        setError('Failed to fetch data. Please try again later.')
+        // setError('Failed to fetch data. Please try again later.')
       } finally {
         setIsLoading(false)
       }
@@ -55,12 +57,25 @@ export default function Home() {
   return (
     <div className="container mx-auto p-4">
       <h1 className="text-3xl font-bold mb-6">Course Management System</h1>
-      <Navigation activeTab={activeTab} setActiveTab={setActiveTab} />
-      {activeTab === 'users' ? (
+      <Tabs defaultValue="view" className="w-full">
+        <TabsList className="grid w-full grid-cols-2">
+          <TabsTrigger value="view">View Data</TabsTrigger>
+          <TabsTrigger value="manage">Manage Data</TabsTrigger>
+        </TabsList>
+        <TabsContent value="view">
+          <Navigation activeTab={activeTab} setActiveTab={setActiveTab}/>
+          {activeTab === 'users' ? (
         <UserList users={users} />
       ) : (
         <CourseList courses={courses} />
       )}
+          {/* <UserList users={users} />
+          <CourseList courses={courses} /> */}
+        </TabsContent>
+        <TabsContent value="manage">
+          <ManagementForms />
+        </TabsContent>
+      </Tabs>
     </div>
   )
 }
