@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client'
 
 import { useState } from 'react'
@@ -8,7 +9,7 @@ import { Textarea } from "@/components/ui/textarea"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import axios from 'axios'
+import { createCourse, createUser, enrollUser } from '../services/api'
 
 interface User {
   id: number;
@@ -26,55 +27,47 @@ export function ManagementForms() {
     const [users, setUsers] = useState<User[]>([]);
     const [courses, setCourses] = useState<Course[]>([]);
 
-  const createUser = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault()
-    const formData = new FormData(event.currentTarget)
-    const userData = Object.fromEntries(formData)
-    try {
-      const response = await axios.post('/users', userData)
-      alert('User created successfully!')
-      setUsers([...users, response.data.user])
-    } catch (error) {
-        if (axios.isAxiosError(error)) {
-            alert('Error: ' + error.response?.data.error || error.message);
-          } else {
-            alert('Unexpected error occurred');
-          }
-    }
-  }
-
-  const createCourse = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault()
-    const formData = new FormData(event.currentTarget)
-    const courseData = Object.fromEntries(formData)
-    try {
-      const response = await axios.post('/api/courses', courseData)
-      alert('Course created successfully!')
-      setCourses([...courses, response.data.course])
-    } catch (error) {
-        if (axios.isAxiosError(error)) {
-            alert('Error: ' + error.response?.data.error || error.message);
-          } else {
-            alert('Unexpected error occurred');
-          }
-    }
-  }
-
-  const enrollUser = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault()
-    const formData = new FormData(event.currentTarget)
-    const enrollmentData = Object.fromEntries(formData)
-    try {
-      await axios.post('/api/enrollments', enrollmentData)
-      alert('User enrolled successfully!')
-    } catch (error) {
-        if (axios.isAxiosError(error)) {
-            alert('Error: ' + error.response?.data.error || error.message);
-          } else {
-            alert('Unexpected error occurred');
-          }
-    }
-  }
+    const handleCreateUser = async (event: React.FormEvent<HTMLFormElement>) => {
+      event.preventDefault();
+      const formData = new FormData(event.currentTarget);
+      const userData = Object.fromEntries(formData);
+  
+      try {
+        const user = await createUser(userData);
+        alert('User created successfully!');
+        setUsers((prev) => [...prev, user]);
+      } catch (error: any) {
+        alert('Error creating user: ' + (error.response?.data?.error || error.message));
+      }
+    };
+  
+    const handleCreateCourse = async (event: React.FormEvent<HTMLFormElement>) => {
+      event.preventDefault();
+      const formData = new FormData(event.currentTarget);
+      const courseData = Object.fromEntries(formData);
+  
+      try {
+        const course = await createCourse(courseData);
+        alert('Course created successfully!');
+        setCourses((prev) => [...prev, course]);
+      } catch (error: any) {
+        alert('Error creating course: ' + (error.response?.data?.error || error.message));
+      }
+    };
+  
+    const handleEnrollUser = async (event: React.FormEvent<HTMLFormElement>) => {
+      event.preventDefault();
+      const formData = new FormData(event.currentTarget);
+      const enrollmentData = Object.fromEntries(formData);
+  
+      try {
+        await enrollUser(enrollmentData);
+        alert('User enrolled successfully!');
+      } catch (error: any) {
+        alert('Error enrolling user: ' + (error.response?.data?.error || error.message));
+      }
+    };
+    
 
   return (
     <Tabs defaultValue="user" className="w-full">
@@ -90,7 +83,7 @@ export function ManagementForms() {
             <CardDescription>Add a new user to the system.</CardDescription>
           </CardHeader>
           <CardContent>
-            <form onSubmit={createUser}>
+            <form onSubmit={handleCreateUser}>
               <div className="grid w-full items-center gap-4">
                 <div className="flex flex-col space-y-1.5">
                   <Label htmlFor="name">Name</Label>
@@ -119,7 +112,7 @@ export function ManagementForms() {
             <CardDescription>Add a new course to the system.</CardDescription>
           </CardHeader>
           <CardContent>
-            <form onSubmit={createCourse}>
+            <form onSubmit={handleCreateCourse}>
               <div className="grid w-full items-center gap-4">
                 <div className="flex flex-col space-y-1.5">
                   <Label htmlFor="title">Title</Label>
@@ -148,7 +141,7 @@ export function ManagementForms() {
             <CardDescription>Enroll a user in a course.</CardDescription>
           </CardHeader>
           <CardContent>
-            <form onSubmit={enrollUser}>
+            <form onSubmit={handleEnrollUser}>
               <div className="grid w-full items-center gap-4">
                 <div className="flex flex-col space-y-1.5">
                   <Label htmlFor="user_id">User</Label>
