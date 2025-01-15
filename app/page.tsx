@@ -56,11 +56,14 @@ export default function Home() {
 
   return (
     <div className="container mx-auto p-4">
-      <h1 className="text-3xl font-bold mb-6">Course Management System</h1>
+      <div className='flex flex-col p-4 bg-pink-50 mb-4 rounded-xl'>
+        <h1 className="text-2xl font-bold mb-2 text-stone-800">Gontrole de Cursos</h1>
+        <p className='text-gray-500'>Tenha o controle de todos os cursos e usuários matriculados de forma organizada</p>
+      </div>
       <Tabs defaultValue="view" className="w-full">
         <TabsList className="grid w-full grid-cols-2">
-          <TabsTrigger value="view">View Data</TabsTrigger>
-          <TabsTrigger value="manage">Manage Data</TabsTrigger>
+          <TabsTrigger value="view">Ver dados</TabsTrigger>
+          <TabsTrigger value="manage">Gerenciar dados</TabsTrigger>
         </TabsList>
         <TabsContent value="view">
           <Navigation activeTab={activeTab} setActiveTab={setActiveTab}/>

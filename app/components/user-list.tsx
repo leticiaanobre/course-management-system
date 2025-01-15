@@ -64,13 +64,13 @@ export function UserList({ users }: UserListProps) {
   return (
     <div>
       <Table>
-        <TableCaption>List of Users</TableCaption>
+        <TableCaption>Usuários</TableCaption>
         <TableHeader>
           <TableRow>
-            <TableHead>Name</TableHead>
+            <TableHead>Nome</TableHead>
             <TableHead>Email</TableHead>
-            <TableHead>Created At</TableHead>
-            <TableHead>Enrollments</TableHead>
+            <TableHead>Criado em</TableHead>
+            <TableHead>Matriculado</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -82,7 +82,7 @@ export function UserList({ users }: UserListProps) {
               <TableCell>
                 <Accordion type="single" collapsible>
                   <AccordionItem value={`item-${user.id}`}>
-                    <AccordionTrigger>View Enrollments</AccordionTrigger>
+                    <AccordionTrigger>Ver Matriculas</AccordionTrigger>
                     <AccordionContent>
                       {user.enrollments.length > 0 ? (
                         user.enrollments.map((enrollment) => (

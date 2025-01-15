@@ -49,13 +49,13 @@ export function CourseList({ courses }: CourseListProps) {
   return (
     <div>
       <Table>
-        <TableCaption>List of Courses</TableCaption>
+        <TableCaption>Cursos</TableCaption>
         <TableHeader>
           <TableRow>
-            <TableHead>Title</TableHead>
-            <TableHead>Description</TableHead>
-            <TableHead>Hours</TableHead>
-            <TableHead>Created At</TableHead>
+            <TableHead>Titulo</TableHead>
+            <TableHead>Descrição</TableHead>
+            <TableHead>Horas</TableHead>
+            <TableHead>Criado em</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>

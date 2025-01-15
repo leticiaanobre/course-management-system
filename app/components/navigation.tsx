@@ -11,8 +11,8 @@ export function Navigation({ activeTab, setActiveTab }: NavigationProps) {
   return (
     <Tabs value={activeTab} onValueChange={setActiveTab} className="mb-6">
       <TabsList>
-        <TabsTrigger value="users">Users</TabsTrigger>
-        <TabsTrigger value="courses">Courses</TabsTrigger>
+        <TabsTrigger value="users">Usuários</TabsTrigger>
+        <TabsTrigger value="courses">Cursos</TabsTrigger>
       </TabsList>
     </Tabs>
   )

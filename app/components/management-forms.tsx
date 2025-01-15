@@ -69,21 +69,21 @@ export function ManagementForms() {
   return (
     <Tabs defaultValue="user" className="w-full">
       <TabsList className="grid w-full grid-cols-3">
-        <TabsTrigger value="user">Create User</TabsTrigger>
-        <TabsTrigger value="course">Create Course</TabsTrigger>
-        <TabsTrigger value="enroll">Enroll User</TabsTrigger>
+        <TabsTrigger value="user">Criar usuário</TabsTrigger>
+        <TabsTrigger value="course">Criar curso</TabsTrigger>
+        <TabsTrigger value="enroll">Matricular aluno</TabsTrigger>
       </TabsList>
       <TabsContent value="user">
         <Card>
           <CardHeader>
-            <CardTitle>Create User</CardTitle>
-            <CardDescription>Add a new user to the system.</CardDescription>
+            <CardTitle>Cadastrar aluno</CardTitle>
+            <CardDescription>Adicione um novo usuário no sistema.</CardDescription>
           </CardHeader>
           <CardContent>
             <form onSubmit={handleCreateUser}>
               <div className="grid w-full items-center gap-4">
                 <div className="flex flex-col space-y-1.5">
-                  <Label htmlFor="name">Name</Label>
+                  <Label htmlFor="name">Nome</Label>
                   <Input id="name" name="name" placeholder="John Doe" required />
                 </div>
                 <div className="flex flex-col space-y-1.5">
@@ -91,12 +91,12 @@ export function ManagementForms() {
                   <Input id="email" name="email" placeholder="john@example.com" type="email" required />
                 </div>
                 <div className="flex flex-col space-y-1.5">
-                  <Label htmlFor="password">Password</Label>
+                  <Label htmlFor="password">Senha</Label>
                   <Input id="password" name="password" type="password" required />
                 </div>
               </div>
               <CardFooter className="flex justify-between mt-4">
-                <Button type="submit">Create User</Button>
+                <Button type="submit">Criar</Button>
               </CardFooter>
             </form>
           </CardContent>
@@ -105,27 +105,27 @@ export function ManagementForms() {
       <TabsContent value="course">
         <Card>
           <CardHeader>
-            <CardTitle>Create Course</CardTitle>
-            <CardDescription>Add a new course to the system.</CardDescription>
+            <CardTitle>Criar Curso</CardTitle>
+            <CardDescription>Adicione um novo curso no sistema.</CardDescription>
           </CardHeader>
           <CardContent>
             <form onSubmit={handleCreateCourse}>
               <div className="grid w-full items-center gap-4">
                 <div className="flex flex-col space-y-1.5">
-                  <Label htmlFor="title">Title</Label>
-                  <Input id="title" name="title" placeholder="Introduction to React" required />
+                  <Label htmlFor="title">Titulo do curso</Label>
+                  <Input id="title" name="title" placeholder="Ex: Introdução ao React" required />
                 </div>
                 <div className="flex flex-col space-y-1.5">
-                  <Label htmlFor="description">Description</Label>
-                  <Textarea id="description" name="description" placeholder="Course description..." required />
+                  <Label htmlFor="description">Descrição</Label>
+                  <Textarea id="description" name="description" placeholder="Sua descrição..." required />
                 </div>
                 <div className="flex flex-col space-y-1.5">
-                  <Label htmlFor="hours">Hours</Label>
+                  <Label htmlFor="hours">Horas</Label>
                   <Input id="hours" name="hours" type="number" placeholder="40" required />
                 </div>
               </div>
               <CardFooter className="flex justify-between mt-4">
-                <Button type="submit">Create Course</Button>
+                <Button type="submit">Criar</Button>
               </CardFooter>
             </form>
           </CardContent>
@@ -134,14 +134,14 @@ export function ManagementForms() {
       <TabsContent value="enroll">
         <Card>
           <CardHeader>
-            <CardTitle>Enroll User</CardTitle>
-            <CardDescription>Enroll a user in a course.</CardDescription>
+            <CardTitle>Matricule um aluno</CardTitle>
+            <CardDescription>Escolha um usuário e o curso a ser matriculado. Apenas um por vez.</CardDescription>
           </CardHeader>
           <CardContent>
             <form onSubmit={handleEnrollUser}>
               <div className="grid w-full items-center gap-4">
                 <div className="flex flex-col space-y-1.5">
-                  <Label htmlFor="user_id">User</Label>
+                  <Label htmlFor="user_id">Usuário</Label>
                   <Select name="user_id" required>
                     <SelectTrigger>
                       <SelectValue placeholder="Select a user" />
@@ -154,7 +154,7 @@ export function ManagementForms() {
                   </Select>
                 </div>
                 <div className="flex flex-col space-y-1.5">
-                  <Label htmlFor="course_id">Course</Label>
+                  <Label htmlFor="course_id">Curso</Label>
                   <Select name="course_id" required>
                     <SelectTrigger>
                       <SelectValue placeholder="Select a course" />
@@ -168,7 +168,7 @@ export function ManagementForms() {
                 </div>
               </div>
               <CardFooter className="flex justify-between mt-4">
-                <Button type="submit">Enroll User</Button>
+                <Button type="submit">Matricular</Button>
               </CardFooter>
             </form>
           </CardContent>
