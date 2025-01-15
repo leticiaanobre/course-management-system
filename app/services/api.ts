@@ -29,13 +29,14 @@ export const createUser = async (userData: Record<string, any>) => {
     toast({
       title: "User created successfully!",
       description: `User ${response.data.user.name} has been added.`,
+      variant: "success", 
     });
     return response.data.user;
   } catch (error: any) {
     toast({
       title: "Error creating user",
       description: error.response?.data?.error || error.message,
-      variant: "destructive",
+      variant: "error", 
     });
     throw error;
   }
@@ -46,14 +47,15 @@ export const createCourse = async (courseData: Record<string, any>) => {
     const response = await api.post('/courses', courseData);
     toast({
       title: "Course created successfully!",
-      description: `Course ${response.data.course.name} has been added.`,
+      description: `Course ${response.data.course.title} has been added.`,
+      variant: "success", 
     });
     return response.data.course;
   } catch (error: any) {
     toast({
       title: "Error creating course",
       description: error.response?.data?.error || error.message,
-      variant: "destructive",
+      variant: "error", 
     });
     throw error;
   }
@@ -65,13 +67,14 @@ export const enrollUser = async (enrollmentData: Record<string, any>) => {
     toast({
       title: "User enrolled successfully!",
       description: `User has been enrolled in the course.`,
+      variant: "success", 
     });
     return response.data;
   } catch (error: any) {
     toast({
       title: "Error enrolling user",
       description: error.response?.data?.error || error.message,
-      variant: "destructive",
+      variant: "error", 
     });
     throw error;
   }
