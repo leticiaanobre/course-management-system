@@ -86,8 +86,8 @@ export function UserList({ users }: UserListProps) {
                     <AccordionContent>
                       {user.enrollments.length > 0 ? (
                         user.enrollments.map((enrollment) => (
-                          <div key={enrollment.id} className="my-3">
-                            <p className="font-semibold text-gray-900">{enrollment.course.name}</p>
+                          <div key={enrollment.id} className="my-3 border border-solid border-fuchsia-200 shadow-fuchsia-300 shadow-sm rounded-md p-3 backdrop-blur-2xl">
+                            <p className="font-semibold text-stone-800">{enrollment.course.name}</p>
                             <p className="text-gray-500">Enrolled at: {enrollment.enrolled_at}</p>
                           </div>
                         ))
