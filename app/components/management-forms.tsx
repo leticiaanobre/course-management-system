@@ -9,7 +9,8 @@ import { Textarea } from "@/components/ui/textarea"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { createCourse, createUser, enrollUser } from '../services/api'
+import { createCourse, createUser, enrollUser, fetchUsers, fetchCourses } from '../services/api'
+import { useEffect } from 'react'
 
 interface User {
   id: number;
@@ -26,6 +27,21 @@ interface Course {
 export function ManagementForms() {
     const [users, setUsers] = useState<User[]>([]);
     const [courses, setCourses] = useState<Course[]>([]);
+
+    useEffect(() => {
+      const loadUsersAndCourses = async () => {
+        try {
+          const fetchedUsers = await fetchUsers();
+          setUsers(fetchedUsers);
+          const fetchedCourses = await fetchCourses();
+          setCourses(fetchedCourses);
+        } catch (error) {
+          console.error("Error fetching users or courses:", error);
+        }
+      };
+  
+      loadUsersAndCourses();
+    }, []);
 
     const handleCreateUser = async (event: React.FormEvent<HTMLFormElement>) => {
       event.preventDefault();
@@ -60,6 +76,9 @@ export function ManagementForms() {
     
       try {
         await enrollUser(enrollmentData);
+        setTimeout(() => {
+          window.location.reload();
+        }, 5000);
       } catch (error) {
         console.error("Error enrolling user:", error);
       }

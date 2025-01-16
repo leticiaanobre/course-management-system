@@ -27,14 +27,14 @@ export const createUser = async (userData: Record<string, any>) => {
   try {
     const response = await api.post('/users', userData);
     toast({
-      title: "User created successfully!",
-      description: `User ${response.data.user.name} has been added.`,
+      title: "Usuário criado com sucesso!",
+      description: `Usuário ${response.data.user.name} foi adicionado no sistema.`,
       variant: "success", 
     });
     return response.data.user;
   } catch (error: any) {
     toast({
-      title: "Error creating user",
+      title: "Erro ao criar usuário",
       description: error.response?.data?.error || error.message,
       variant: "error", 
     });
@@ -46,8 +46,8 @@ export const createCourse = async (courseData: Record<string, any>) => {
   try {
     const response = await api.post('/courses', courseData);
     toast({
-      title: "Course created successfully!",
-      description: `Course ${response.data.course.title} has been added.`,
+      title: "Curso criado com sucesso!",
+      description: `Curso ${response.data.course.title} foi adicionado no sistema.`,
       variant: "success", 
     });
     return response.data.course;
@@ -65,14 +65,14 @@ export const enrollUser = async (enrollmentData: Record<string, any>) => {
   try {
     const response = await api.post('/enrollments', enrollmentData);
     toast({
-      title: "User enrolled successfully!",
-      description: `User has been enrolled in the course.`,
+      title: "Usuário matriculado com sucesso!",
+      description: `Usuário foi matriculado no curso selecionado.`,
       variant: "success", 
     });
     return response.data;
   } catch (error: any) {
     toast({
-      title: "Error enrolling user",
+      title: "Erro ao matricular usuário",
       description: error.response?.data?.error || error.message,
       variant: "error", 
     });
