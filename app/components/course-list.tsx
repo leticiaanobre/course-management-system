@@ -61,7 +61,7 @@ export function CourseList({ courses }: CourseListProps) {
         <TableBody>
           {currentCourses.map((course) => (
             <TableRow key={course.id}>
-              <TableCell className="font-semibold text-fuchsia-700">{course.title}</TableCell>
+              <TableCell className="font-semibold text-stone-800">{course.title}</TableCell>
               <TableCell>{course.description}</TableCell>
               <TableCell>{course.hours}</TableCell>
               <TableCell>{course.created_at}</TableCell>
