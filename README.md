@@ -2,7 +2,7 @@
 
 Este é o front-end do Sistema de Gerenciamento de Cursos, desenvolvido com **Next.js**, **TypeScript** e estilizado com **Tailwind CSS**. O projeto oferece uma interface amigável, responsiva e moderna para gerenciar usuários, cursos e matrículas.  
 
-![Screenshot do sistema](./assets/users.png)
+![Screenshot do sistema](./app/assets/users.png)
 
 ## Ferramentas e Tecnologias Utilizadas
 - **Next.js**: Framework React para renderização no lado do servidor e construção de aplicações web escaláveis.
